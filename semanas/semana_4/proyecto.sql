@@ -39,11 +39,16 @@ CREATE TABLE IF NOT EXISTS corredores (
 );
 
 INSERT INTO categorias (id, nombre, descripcion) VALUES
-    (1, 'Élite',   'Profesionales mayores de 23 años'),
-    (2, 'Sub-23',  'Corredores de 19 a 22 años'),
-    (3, 'Júnior',  'Corredores de 17 a 18 años'),
-    (4, 'Amateur', 'Corredores no profesionales'),
-    (5, 'Máster',  'Corredores mayores de 40 años');
+    (1,  'Élite',            'Profesionales mayores de 23 años'),
+    (2,  'Sub-23',           'Corredores de 19 a 22 años'),
+    (3,  'Júnior',           'Corredores de 17 a 18 años'),
+    (4,  'Amateur',          'Corredores no profesionales'),
+    (5,  'Máster',           'Corredores mayores de 40 años'),
+    (6,  'Femenino Élite',   'Profesionales femeninas mayores de 23 años'),
+    (7,  'Femenino Sub-23',  'Corredoras femeninas de 19 a 22 años'),
+    (8,  'Paralímpico',      'Corredores de ciclismo adaptado'),
+    (9,  'Gravel',           'Modalidad de caminos mixtos de grava'),
+    (10, 'BMX',              'Modalidad de bicicleta moto cross');
 
 INSERT INTO equipos (id, nombre, pais, director, año_fundacion) VALUES
     (1,  'Ineos Grenadiers',      'Reino Unido',     'Rod Ellingworth',    2010),

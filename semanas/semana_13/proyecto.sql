@@ -26,7 +26,7 @@ CREATE TABLE disciplinas (
 -- Nivel 2: 5 modalidades
 -- Nivel 3: 3 sub-disciplinas por modalidad = 15
 -- Nivel 4: 4 categorías por sub-disciplina = 60
--- Total: 81 filas ≥ 200 con generate_series para UUID extra
+-- Total: 21 + 60 (categorías) + 200 (regionales) = 281 filas ≥ 200
 -- ============================================
 
 -- Nivel 1 — raíz
@@ -69,15 +69,16 @@ FROM disciplinas d
 CROSS JOIN (VALUES ('Élite'), ('Sub-23'), ('Júnior'), ('Máster')) AS cats(cat)
 WHERE d.id BETWEEN 7 AND 21;
 
--- Filas adicionales para asegurar ≥ 200 con variaciones regionales
+-- Filas adicionales para asegurar ≥ 200: variaciones regionales
+-- sobre las 5 modalidades (nivel 2) y las 15 sub-disciplinas (nivel 3) = 20 nodos x 10 = 200
 INSERT INTO disciplinas (nombre, descripcion, parent_id)
 SELECT
     'Regional ' || gs || ' — ' || d.nombre,
     'Competición regional nivel ' || gs,
     d.id
 FROM disciplinas d
-CROSS JOIN generate_series(1, 8) AS gs
-WHERE d.id BETWEEN 2 AND 6;
+CROSS JOIN generate_series(1, 10) AS gs
+WHERE d.id BETWEEN 2 AND 21;
 
 -- ============================================
 -- CONSULTA 1: Árbol completo con depth y path

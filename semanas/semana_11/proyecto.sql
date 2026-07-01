@@ -119,17 +119,32 @@ SELECT n, 'Corredor ' || n,
 FROM gen;
 
 INSERT INTO carreras (id, nombre, pais, distancia_km, tipo, año) VALUES
-    (1, 'Tour de Francia', 'Francia', 3404.0, 'Montaña', 2023),
-    (2, 'Giro de Italia',  'Italia',  3448.0, 'Montaña', 2023),
-    (3, 'Vuelta a España', 'España',  3181.0, 'Montaña', 2023),
-    (4, 'París-Roubaix',   'Francia',  259.0, 'Clásica', 2023),
-    (5, 'Tour de Flandes', 'Bélgica',  273.0, 'Clásica', 2023);
+    (1,  'Tour de Francia',      'Francia',     3404.0, 'Montaña', 2023),
+    (2,  'Giro de Italia',       'Italia',      3448.0, 'Montaña', 2023),
+    (3,  'Vuelta a España',      'España',      3181.0, 'Montaña', 2023),
+    (4,  'París-Roubaix',        'Francia',      259.0, 'Clásica', 2023),
+    (5,  'Tour de Flandes',      'Bélgica',      273.0, 'Clásica', 2023),
+    (6,  'Milán-San Remo',       'Italia',       298.0, 'Clásica', 2023),
+    (7,  'Lieja-Bastoña-Lieja',  'Bélgica',      258.0, 'Clásica', 2023),
+    (8,  'Il Lombardia',         'Italia',       238.0, 'Clásica', 2023),
+    (9,  'Volta a Cataluña',     'España',       1200.0, 'Montaña', 2023),
+    (10, 'Tirreno-Adriático',    'Italia',      1000.0, 'Montaña', 2023),
+    (11, 'Critérium del Dauphiné','Francia',      950.0, 'Montaña', 2023),
+    (12, 'Tour de Suiza',        'Suiza',       1100.0, 'Montaña', 2023),
+    (13, 'Amstel Gold Race',     'Países Bajos', 254.0, 'Clásica', 2023),
+    (14, 'Gante-Wevelgem',       'Bélgica',      250.0, 'Clásica', 2023),
+    (15, 'E3 Saxo Classic',      'Bélgica',      204.0, 'Clásica', 2023),
+    (16, 'Vuelta al País Vasco', 'España',       650.0, 'Montaña', 2023),
+    (17, 'París-Niza',           'Francia',      950.0, 'Montaña', 2023),
+    (18, 'Clásica de San Sebastián', 'España',   227.0, 'Clásica', 2023),
+    (19, 'Vuelta a Burgos',      'España',       650.0, 'Montaña', 2023),
+    (20, 'Tour de Vendée',       'Francia',      200.0, 'Clásica', 2023);
 
 WITH RECURSIVE gen(n) AS (
     SELECT 1 UNION ALL SELECT n + 1 FROM gen WHERE n < 100
 )
 INSERT INTO resultados (id, corredor_id, carrera_id, posicion, tiempo_total_seg, puntos)
-SELECT n, ((n * 3 - 1) % 60) + 1, ((n * 7 - 1) % 5) + 1,
+SELECT n, ((n * 3 - 1) % 60) + 1, ((n * 7 - 1) % 20) + 1,
     1 + (n % 15), 28800 + n * 180,
     CASE WHEN (n % 15) + 1 = 1 THEN 100
          WHEN (n % 15) + 1 <= 3 THEN 70
